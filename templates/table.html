@@ -1,0 +1,93 @@
+{% extends "masterPage.html" %}
+
+{% block content %}
+
+
+<div class="section">
+    <div class="flex-center-vertical">
+        {% include "alert.html" %}
+    </div>
+</div>
+
+{% if call_history%}
+{% for call_group_key, call_group in call_history.items() %}
+<div class="section">
+    <div class="panel panel--loose panel--raised base-margin-bottom">
+        <h3>Calling Number: {{call_group[0]['Calling number']}} at {{call_group[0]['Start time']}}</h3>
+        <hr>
+
+
+        <div class="responsive-table">
+            <table class="table table--lined table--selectable table">
+                <thead>
+                    <tr>
+
+                        <th>Calling number</th>
+                        <th>Called number</th>
+                        <th>User</th>
+                        <th>Start time</th>
+                        <th>Release time</th>
+                        <th>Duration</th>
+                        <th>Ring duration</th>
+                        <th>Answered</th>
+                        <th>Redirect reason</th>
+                        <th>Related reason</th>
+                        <th>Direction</th>
+
+
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for entry in call_group %}
+                    <tr>
+                        <td>
+                            {{entry['Calling number']}}
+                        </td>
+                        <td>
+                            {{entry['Called number']}}
+                        </td>
+                        <td>
+                            {{entry['User']}}
+                        </td>
+                        <td>
+                            {{entry['Start time']}}
+                        </td>
+                        <td>
+                            {{entry['Release time']}}
+                        </td>
+                        <td>
+                            {{entry['Duration']}}
+                        </td>
+                        <td>
+                            {{entry['Ring duration']}}
+                        </td>
+
+                        <td>
+                            {{entry['Answered']}}
+                        </td>
+                        <td>
+                            {{entry['Redirect reason']}}
+                        </td>
+                        <td>
+                            {{entry['Related reason']}}
+                        </td>
+                        <td>
+                            {{entry['Direction']}}
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            <div class="pull-right text-gray-500"> Entries associated to correlation ID: {{call_group[0]['Correlation
+                ID']}} </div>
+        </div>
+    </div>
+</div>
+
+{% endfor %}
+{% else %}
+<div> No data available </div>
+{% endif %}
+
+
+{% endblock %}

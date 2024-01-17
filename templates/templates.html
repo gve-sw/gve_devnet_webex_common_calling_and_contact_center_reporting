@@ -1,0 +1,24 @@
+
+{% extends "masterPage.html" %}
+
+{% block content %}
+
+    <div class="section">
+        <div class="flex-center-vertical">
+            {% include "alert.html" %}
+        </div>
+    </div>
+
+    <div class="section">
+        <div class="panel panel--loose panel--raised base-margin-bottom">
+            <h3>Report Templates</h3>
+            <hr>
+            <ul> 
+                {% for template in templates %}
+                    <li>{{template.title}} (ID: {{template.Id}})</li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+
+{%  endblock %}

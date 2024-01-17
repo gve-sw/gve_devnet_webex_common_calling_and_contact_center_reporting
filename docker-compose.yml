@@ -1,0 +1,18 @@
+version: "3.5"
+
+services:
+  calling_dashboard:
+    image: ghcr.io/gve-sw/gve_devnet_webex_common_calling_and_contact_center_reporting:latest
+    ports:
+      - "5000:5000"
+    container_name: calling_dashboard
+    environment:
+      - WEBEX_TOKEN=${WEBEX_TOKEN}
+      - WEBEX_CC_TOKEN=${WEBEX_CC_TOKEN}
+      - REPORT_START_DATE=${REPORT_START_DATE}
+      - REPORT_END_DATE=${REPORT_END_DATE}
+      - TEMPLATE_ID=${TEMPLATE_ID}
+      - WXCC_ORG_ID=${WXCC_ORG_ID}
+      - TZ=${LOCAL_TIME_ZONE}
+      - TIME_ZONE_DIFF=${TIME_ZONE_DIFF}
+    restart: "always"
